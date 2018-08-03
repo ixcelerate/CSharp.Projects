@@ -24,7 +24,7 @@ namespace CSharp.Projects.AWS.S3.Uploader
         /// <summary>
         ///     The file path
         /// </summary>
-        private const string FilePath = "C:\\Users\\lgopalakrishan\\Downloads\\Omnique_Historical_2017.csv";
+        private const string FilePath = "C:\\Users\\lgopalakrishan\\Downloads\\Omnique_Weekly_20180101ExampleNew.csv";
 
         /// <summary>
         ///     The bucket region
