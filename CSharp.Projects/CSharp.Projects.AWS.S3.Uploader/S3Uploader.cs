@@ -24,7 +24,7 @@ namespace CSharp.Projects.AWS.S3.Uploader
         /// <summary>
         ///     The file path
         /// </summary>
-        private const string FilePath = "C:\\Users\\lgopalakrishan\\Downloads\\Omnique_Weekly_20180101ExampleNew.csv";
+        private const string FilePath = "/Users/lakshmipathiraj/Downloads/iris.data.txt";
 
         /// <summary>
         ///     The bucket region
@@ -36,6 +36,7 @@ namespace CSharp.Projects.AWS.S3.Uploader
         /// </summary>
         public static void Main()
         {
+            //var status = CreateAWSCredentialsProfile(); //One-time only 
             const string keyName = "Test";
             UploadFileAsync().Wait();
             UploadFileAsync(keyName).Wait();
@@ -49,6 +50,25 @@ namespace CSharp.Projects.AWS.S3.Uploader
             TrackMultipartUploadProgress(BucketName, FilePath, keyName, true);
         }
 
+        /// <summary>
+        /// Creates the AWS Credentials profile.
+        /// </summary>
+        /// <returns><c>true</c>, if AWSC redentials profile was created, <c>false</c> otherwise.</returns>
+        public static bool CreateAWSCredentialsProfile()
+        {
+            var options = new CredentialProfileOptions
+            {
+                AccessKey = "YOUR_AWS_ACCESS_KEY_ID",
+                SecretKey = "YOUR_AWS_SECRET_ACCESS_KEY"
+            };
+            var profile = new CredentialProfile("basic_profile", options)
+            {
+                Region = RegionEndpoint.USWest2
+            };
+            var credentialProfileStoreChain = new CredentialProfileStoreChain();
+            credentialProfileStoreChain.RegisterProfile(profile);
+            return true;
+        }
 
         /// <summary>
         ///     Uploads the file asynchronous.
